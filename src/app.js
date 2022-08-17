@@ -18,31 +18,29 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: '*', credentials: true }));
 
 
-// const parameters = {
-//     path: 'releases/launch',
-//     consumer_key: '1D4A49BA-E460-035A-675F-CD1835290DD6',
-//     consumer_secret: 'AFBF434A-2E0D-5246-AF38-836E173C5212',
-//     fields: {
-//         'release_code': '6151ee2a694f4',
-//         'name': 'Roberto Jr',
-//         'email_address': 'roberto.romero@globalalumni.org',
-//         'params': 'globalalumni',
-//         'simulation_mode': 'simulation'
-//     }
-// };
+const parameters = {
+    path: 'releases/launch',
+    consumer_key: '1D4A49BA-E460-035A-675F-CD1835290DD6',
+    consumer_secret: 'AFBF434A-2E0D-5246-AF38-836E173C5212',
+    fields: {
+        'release_code': '6151ee2a694f4',
+        'name': 'Roberto Jr',
+        'email_address': 'roberto.romero@globalalumni.org',
+        'params': 'globalalumni',
+        'simulation_mode': 'simulation'
+    }
+};
 
 //Route Testing
 router.post("/test", async (req, res) => {
-    // elucidatAPI(parameters, function (statusCode, response) {
-    //     console.log(statusCode);
-    //     console.log(response);
-    //     return res.status(200).json( response );
-    // });
-
     console.log(req.body);
+    
+    elucidatAPI(parameters, function (statusCode, response) {
+        console.log(statusCode);
+        console.log(response);
+        return res.status(200).json( response );
+    });
 });
-
-
 
 app.use(router)
 
@@ -50,6 +48,6 @@ app.use(router)
 app.listen(app.get('port'), () => {
     figlet('    todo OK', (err, res) => {
         console.log(res);
-        console.log(`       Server work in port: ---> ${app.get('port')}`);
+        console.log(`       Server work in klk port: ---> ${app.get('port')}`);
     })
 });
